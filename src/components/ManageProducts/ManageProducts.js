@@ -32,7 +32,7 @@ const ManageProducts = () => {
 
     return (
         <div>
-            <h3 className="bg-secondary py-3">Manage Orders</h3>
+            <h3 className="bg-secondary py-3">Manage Products</h3>
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -40,7 +40,6 @@ const ManageProducts = () => {
                         <th>Name</th>
                         <th>Short Description</th>
                         <th>Price</th>
-                        <th>Update</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
@@ -51,11 +50,6 @@ const ManageProducts = () => {
                             <td>{product.name}</td>
                             <td>{product.short_description}</td>
                             <td>{product.price}</td>
-                            <td>
-                                <Link to={`/users/update/${product._id}`}>
-                                    <button>Update</button>
-                                </Link>
-                            </td>
                             <td><button onClick={() => { if (window.confirm('Delete the Product?')) { handleDeleteProduct(product._id) }; }}>X</button></td>
 
 
