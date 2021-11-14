@@ -76,7 +76,6 @@ const ManageOrders = () => {
                         <th>Cost</th>
                         <th>Status</th>
                         <th>Action</th>
-                        <th>Update</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
@@ -96,11 +95,6 @@ const ManageOrders = () => {
                                 <td><button onClick={() => handleApproveOrder(order._id, 'Approved')}>Approve</button></td> :
                                 <td><button onClick={() => handleApproveOrder(order._id, 'Pending')}>Make Pending</button></td>
                             }
-                            <td>
-                                <Link to={`/users/update/${order._id}`}>
-                                    <button>Update</button>
-                                </Link>
-                            </td>
                             <td><button onClick={() => { if (window.confirm('Delete the item?')) { handleDeleteOrder(order._id) }; }}>X</button></td>
 
 
