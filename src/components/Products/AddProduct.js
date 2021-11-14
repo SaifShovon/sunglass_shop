@@ -4,7 +4,6 @@ import './AddProduct.css';
 const AddProduct = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
-        //const url = 'http://localhost:5000/services';
         const url = 'https://mysterious-gorge-96095.herokuapp.com/products';
         fetch(url, {
             method: 'POST',
@@ -31,7 +30,7 @@ const AddProduct = () => {
                 <textarea {...register("short_description")} placeholder="Short Description" />
                 <textarea {...register("description")} placeholder="Description" />
                 <input type="number" {...register("price")} placeholder="Price" />
-                <input  {...register("img")} placeholder="Example: service.jpg Store In: public/services" />
+                <input  {...register("img")} placeholder="Full URL of online storage image" />
                 <input type="submit" />
             </form>
         </div>
