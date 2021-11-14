@@ -11,7 +11,7 @@ const Header = () => {
     return (
         <div className="header">
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <span className="navbar-brand px-3"><Link to="/">Fotafot Courier Express</Link></span>
+                <span className="navbar-brand px-3"><Link to="/">Sunglass Shop</Link></span>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -22,23 +22,23 @@ const Header = () => {
                             <Link to="/home"> <FontAwesomeIcon icon={faHome} />  Home</Link>
                         </li>
 
-
-
-                        {!user?.email &&
+                        {user?.email && !admin && <React.Fragment>
                             <li className="nav-item">
-                                <Link to="/login">Login</Link>
+                                <Link to="/pay">Pay</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link to="/myOrders">My Order</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="/addReview">Review</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="/profile">Profile</Link>
+                            </li>
+                        </React.Fragment>
                         }
-                        <li className="nav-item">
-                            <Link to="/profile">Profile</Link>
-                        </li>
 
-                        <li className="nav-item">
-                            <Link to="/exploreMore">Explore More</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/myOrders">My Order</Link>
-                        </li>
+
                         {admin && <React.Fragment>
                             <li className="nav-item">
                                 <Link to="/manageOrder">Manage Order</Link>
@@ -56,7 +56,15 @@ const Header = () => {
 
                         }
 
-
+                        {!user?.email && <React.Fragment>
+                            <li className="nav-item">
+                                <Link to="/login">Login</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="/register">Registration</Link>
+                            </li>
+                        </React.Fragment>
+                        }
 
                         {user?.email &&
                             <li className="nav-item">
@@ -70,7 +78,7 @@ const Header = () => {
                         }
                     </ul>
                 </div>
-            </nav>
+            </nav >
 
 
 
@@ -78,7 +86,7 @@ const Header = () => {
 
 
 
-        </div>
+        </div >
     );
 };
 

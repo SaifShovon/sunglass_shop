@@ -18,7 +18,6 @@ const PlaceOrder = (props) => {
         data.status = "Pending";
         data.product_name = product[0].name;
         data.price = product[0].price;
-        data.delivery_duration = product[0].delivery_duration;
         fetch(url, {
             method: 'POST',
             headers: {

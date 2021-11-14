@@ -45,7 +45,6 @@ const MyOrders = () => {
                         <th>Quantity</th>
                         <th>Price</th>
                         <th>Status</th>
-                        <th>Update</th>
                         <th>Delete</th>
                     </tr>
                 </thead>
@@ -61,11 +60,6 @@ const MyOrders = () => {
                             <td>{order.quantity}</td>
                             <td>{order.price}</td>
                             <td>{order.status}</td>
-                            <td>
-                                <Link to={`/users/update/${order._id}`}>
-                                    <button>Update</button>
-                                </Link>
-                            </td>
                             <td><button onClick={() => { if (window.confirm('Delete the item?')) { handleDeleteOrder(order._id) }; }}>X</button></td>
                         </tr>)
                     }

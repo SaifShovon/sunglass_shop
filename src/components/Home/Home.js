@@ -5,6 +5,7 @@ import Slider from './Slider/Slider';
 import HappyCustomer from './HappyCustomer/HappyCustomer';
 import Subscribe from './Subscribe/Subscribe';
 import ReviewRating from './ReviewRating/ReviewRating';
+import { Link } from 'react-router-dom';
 const Home = (props) => {
     const all_product = props.all_product;
     const isLoading = props.isLoading;
@@ -23,7 +24,7 @@ const Home = (props) => {
                     <Products key={product._id} product={product}></Products>
 
                 )}
-
+                <Link to="/exploreMore"><button type="button" class="btn btn-primary btn-lg">Explore More Products</button></Link>
             </Row>
 
             <ReviewRating></ReviewRating>

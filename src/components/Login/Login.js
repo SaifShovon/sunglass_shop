@@ -1,13 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../hooks/AuthProvider';
 import { useState } from 'react';
 const Login = () => {
     const { user } = useAuth();
-    const { signInUsigEmailAndPass, handleResetPassword, error } = useAuth();
+    const { signInUsigEmailAndPass, error } = useAuth();
     const [email, setEmail] = useState('');
     const [errorMessage, setError] = useState('');
     const [password, setPassword] = useState('');
+    const location = useLocation();
+    const history = useHistory();
+    const url = location.state?.from || "/home"
     const handleLogin = e => {
         e.preventDefault();
         console.log(email, password, signInUsigEmailAndPass);
@@ -15,12 +18,12 @@ const Login = () => {
             setError('Password must be atleast 6 character long!!!');
             return;
         }
-        if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&^_-]{8,}$/.test(password)) {
-            setError('At least 1 alphabet!!At least 1 digit!!Contains no space!!!Optional special characters e.g. @$!%*#?&^_-!!!Minimum 8 characters long!!');
-            return;
-        }
+        // if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&^_-]{8,}$/.test(password)) {
+        //     setError('At least 1 alphabet!!At least 1 digit!!Contains no space!!!Optional special characters e.g. @$!%*#?&^_-!!!Minimum 8 characters long!!');
+        //     return;
+        // }
         setError('');
-        signInUsigEmailAndPass(email, password)
+        signInUsigEmailAndPass(email, password, url, history)
     }
     const handleEmailChange = e => {
         setEmail(e.target.value);
@@ -66,9 +69,6 @@ const Login = () => {
 
 
                     <button type="submit" className="btn btn-primary">Login</button>
-                    {
-                        user?.email && <button className="btn btn-primary" type="button" style={{ marginLeft: "10px" }} onClick={() => handleResetPassword(email)}>Reset Pass</button>
-                    }
 
                 </form>
             </div >

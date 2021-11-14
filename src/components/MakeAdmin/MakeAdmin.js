@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 const MakeAdmin = () => {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+    const [error, setError] = useState('');
     const handleEmailChange = e => {
         setEmail(e.target.value);
         e.preventDefault();
@@ -26,7 +27,7 @@ const MakeAdmin = () => {
                     setMessage('Admin Created Successfully!!!');
                 }
                 else {
-                    setMessage('User not found or Admin already Created!!!');
+                    setError('User not found or Admin already Created!!!');
                 }
             })
     }
@@ -36,6 +37,10 @@ const MakeAdmin = () => {
                 <h2>Create Admin</h2>
                 {setMessage ?
                     <div className="row mb-5  ml-5 text-primary">{message}</div> : ''
+
+                }
+                {error ?
+                    <div className="row mb-5  ml-5 text-danger">{error}</div> : ''
 
                 }
                 <div className="row mb-3">

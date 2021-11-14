@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import initializeAuthentication from "../Firebase/firebase.init";
-import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 initializeAuthentication();
 const useFirebase = () => {
     const [user, setUser] = useState({});
@@ -9,12 +9,13 @@ const useFirebase = () => {
     const [error, setError] = useState('');
     const auth = getAuth();
 
-    const signInUsigEmailAndPass = (email, password) => {
+    const signInUsigEmailAndPass = (email, password, url, history) => {
 
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 setUser(result.user);
+                history.push(url);
             })
             .catch((error) => {
                 setError(error.message);
@@ -27,7 +28,6 @@ const useFirebase = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 setUser(result.user);
-                verifyEmail();
                 setUserName(name);
                 userCreate(name, email);
                 setError('');
@@ -69,37 +69,12 @@ const useFirebase = () => {
                 }
             })
     }
-    const verifyEmail = () => {
-        sendEmailVerification(auth.currentUser)
-            .then(result => {
-                setError("Email Sent for verification mail!!!");
-            })
-            .catch(error => {
-                setError(error.message);
-            })
-    }
-    const handleResetPassword = (email) => {
-        sendPasswordResetEmail(auth, email)
-            .then(result => {
-                setError("Email Sent for password reset!!!");
-            })
-            .catch(error => {
-                setError(error.message);
-            })
-    }
+
 
     const logout = () => {
         signOut(auth)
             .then(resut => {
                 setUser({});
-            })
-    }
-
-    const logout_old = (history) => {
-        signOut(auth)
-            .then(resut => {
-                setUser({});
-                history.push('/login');
             })
     }
 
@@ -129,8 +104,7 @@ const useFirebase = () => {
         signInUsigEmailAndPass,
         logout,
         isLoading,
-        setUserName,
-        handleResetPassword
+        setUserName
     }
 }
 

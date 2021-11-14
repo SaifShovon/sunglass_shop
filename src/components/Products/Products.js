@@ -21,7 +21,7 @@ const Products = (props) => {
                     {description.slice(0, 200)} ...
                 </Card.Text>
                 <Card.Text>
-                    <b> Price:</b> {price}
+                    <b> Price:</b> {price ? price : 1500}
                 </Card.Text>
                 <Link to={`/product/${_id}`}><Button variant="primary">View Details</Button></Link>
 

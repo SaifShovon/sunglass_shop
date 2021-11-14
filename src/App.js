@@ -7,7 +7,6 @@ import Register from './components/Register/Register';
 import Header from './components/Header/Header';
 import AuthProvider from './components/context/AuthProvider';
 import PrivetRoute from './components/PrivetRoute/PrivetRoute';
-import About from './components/About/About';
 import Footer from './components/Footer/Footer';
 import ProductDetails from './components/Products/ProductDetails';
 import Profile from './components/Profile/Profile';
@@ -15,13 +14,14 @@ import MyOrders from './components/MyOrders/MyOrders';
 import NotFound from './components/NotFound/NotFound';
 import { useState, useEffect } from 'react';
 import PlaceOrder from './components/PlaceOrder/PlaceOrder';
-import UpdateOrder from './components/UpdateOrder/UpdateOrder';
 import ManageOrders from './components/ManageOrders/ManageOrders';
 import AddProduct from './components/Products/AddProduct';
 import AllProducts from './components/Products/AllProducts';
 import MakeAdmin from './components/MakeAdmin/MakeAdmin';
 import AdminRoute from './components/AdminRoute/AdminRoute';
 import ManageProducts from './components/ManageProducts/ManageProducts';
+import Pay from './components/Pay/Pay';
+import AddReview from './components/AddReview/AddReview';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -54,24 +54,24 @@ function App() {
             <Route path="/register">
               <Register></Register>
             </Route>
-            <Route path="/about">
-              <About all_product={products}></About>
+            <Route path="/exploreMore">
+              <AllProducts all_product={products}></AllProducts>
             </Route>
             <PrivetRoute path="/profile">
               <Profile></Profile>
             </PrivetRoute>
+            <PrivetRoute path="/pay">
+              <Pay></Pay>
+            </PrivetRoute>
+            <PrivetRoute path="/addReview">
+              <AddReview></AddReview>
+            </PrivetRoute>
             <PrivetRoute path="/addOrder/:product_id">
               <PlaceOrder all_product={products}></PlaceOrder>
-            </PrivetRoute>
-            <PrivetRoute path="/users/update/:id">
-              <UpdateOrder></UpdateOrder>
             </PrivetRoute>
             <PrivetRoute path="/myOrders">
               <MyOrders></MyOrders>
             </PrivetRoute>
-            <Route path="/exploreMore">
-              <AllProducts all_product={products}></AllProducts>
-            </Route>
             <PrivetRoute exact path="/product/:product_id">
               <ProductDetails all_product={products} ></ProductDetails>
             </PrivetRoute>

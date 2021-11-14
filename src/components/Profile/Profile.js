@@ -14,14 +14,12 @@ const Profile = () => {
                 <Table striped bordered hover size="sm" responsive>
                     <thead>
                         <tr>
-                            <th>Image</th>
                             <th>Email</th>
                             <th>Name</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><img src={user.photoURL} alt="profile" /></td>
                             <td>{user.email}</td>
                             <td>{user.displayName}</td>
                         </tr>
