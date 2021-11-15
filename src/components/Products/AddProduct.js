@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import './AddProduct.css';
+import Dashboard from '../Dashboard/Dashboard';
 const AddProduct = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
@@ -23,6 +24,7 @@ const AddProduct = () => {
     }
     return (
         <div className="add-product">
+            <Dashboard></Dashboard>
             <h2>Add a Product</h2>
 
             <form onSubmit={handleSubmit(onSubmit)}>

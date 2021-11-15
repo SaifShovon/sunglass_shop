@@ -1,13 +1,14 @@
 import React from 'react';
 import useAuth from '../hooks/AuthProvider';
 import { Table } from 'react-bootstrap';
-
+import Dashboard from '../Dashboard/Dashboard';
 
 const Profile = () => {
     const { user, error } = useAuth();
 
     return (
         <div>
+            <Dashboard></Dashboard>
             <h2 className="bg-secondary py-3">Your Profile</h2>
             <div className="mx-5 mt-5">
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import initializeAuthentication from "../Firebase/firebase.init";
-import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 initializeAuthentication();
 const useFirebase = () => {
     const [user, setUser] = useState({});
@@ -8,13 +8,19 @@ const useFirebase = () => {
     const [admin, setAdmin] = useState(false);
     const [error, setError] = useState('');
     const auth = getAuth();
+    useEffect(() => {
+        const url = `https://mysterious-gorge-96095.herokuapp.com/users/${user.email}`;
+        fetch(url)
+            .then(res => res.json())
+            .then(data => setAdmin(data.admin))
 
+    }, [user.email]);
     const signInUsigEmailAndPass = (email, password, url, history) => {
-
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 setUser(result.user);
+                setError('');
                 history.push(url);
             })
             .catch((error) => {
@@ -75,6 +81,7 @@ const useFirebase = () => {
         signOut(auth)
             .then(resut => {
                 setUser({});
+                setError('');
             })
     }
 
@@ -82,20 +89,16 @@ const useFirebase = () => {
         onAuthStateChanged(auth, user => {
             if (user) {
                 setUser(user);
+                setError('');
             }
             else {
                 setUser({})
             }
-            setIsLoading(false)
+            setIsLoading(false);
         })
     }, [auth]);
 
-    useEffect(() => {
-        const url = `https://mysterious-gorge-96095.herokuapp.com/users/${user.email}`;
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setAdmin(data.admin))
-    }, [user.email]);
+
     return {
         user,
         admin,

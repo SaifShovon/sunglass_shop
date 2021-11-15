@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
+import Dashboard from '../Dashboard/Dashboard';
 
 const ManageProducts = () => {
     const [products, setProducts] = useState([]);
@@ -32,6 +33,7 @@ const ManageProducts = () => {
 
     return (
         <div>
+            <Dashboard></Dashboard>
             <h3 className="bg-secondary py-3">Manage Products</h3>
             <Table striped bordered hover>
                 <thead>

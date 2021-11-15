@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
 import useAuth from '../hooks/AuthProvider';
-
+import Dashboard from '../Dashboard/Dashboard';
 const MyOrders = () => {
     const { user } = useAuth();
     const [orders, setOrders] = useState([]);
@@ -32,6 +32,7 @@ const MyOrders = () => {
     }
     return (
         <div>
+            <Dashboard></Dashboard>
             <h3 className="bg-secondary py-3">My Orders</h3>
             <Table striped bordered hover>
                 <thead>

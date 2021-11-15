@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../hooks/AuthProvider';
 import { useState } from 'react';
-
+import Header from '../Header/Header';
 const Register = () => {
     const { signUpUsigEmailAndPass, error } = useAuth();
     const [email, setEmail] = useState('');
@@ -39,6 +39,7 @@ const Register = () => {
 
     return (
         <div>
+            <Header></Header>
             <div className="bg-secondary py-3">
                 <Link to="/login">
                     <button style={{ marginTop: "10px" }} type="submit" className="btn btn-primary">Already Registered?</button>

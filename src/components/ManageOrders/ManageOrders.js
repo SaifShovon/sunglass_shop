@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
-
+import Dashboard from '../Dashboard/Dashboard';
 const ManageOrders = () => {
     const [orders, setOrders] = useState([]);
     //const orderLinks = `http://localhost:5000/orders`;
@@ -62,6 +62,7 @@ const ManageOrders = () => {
 
     return (
         <div>
+            <Dashboard></Dashboard>
             <h3 className="bg-secondary py-3">Manage Orders</h3>
             <Table striped bordered hover>
                 <thead>
@@ -70,6 +71,7 @@ const ManageOrders = () => {
                         <th>Name</th>
                         <th>Email</th>
                         <th>Date</th>
+                        <th>Product Name</th>
                         <th>Shipping Address</th>
                         <th>Billing Address</th>
                         <th>Quantity</th>
@@ -86,13 +88,14 @@ const ManageOrders = () => {
                             <td>{order.name}</td>
                             <td>{order.email}</td>
                             <td>{order.date}</td>
+                            <td>{order.product_name}</td>
                             <td>{order.shipping_address}</td>
                             <td>{order.billing_address}</td>
                             <td>{order.quantity}</td>
                             <td>{order.price}</td>
                             <td>{order.status}</td>
-                            {order.status !== 'Approved' ?
-                                <td><button onClick={() => handleApproveOrder(order._id, 'Approved')}>Approve</button></td> :
+                            {order.status !== 'Shipped' ?
+                                <td><button onClick={() => handleApproveOrder(order._id, 'Shipped')}>Ship</button></td> :
                                 <td><button onClick={() => handleApproveOrder(order._id, 'Pending')}>Make Pending</button></td>
                             }
                             <td><button onClick={() => { if (window.confirm('Delete the item?')) { handleDeleteOrder(order._id) }; }}>X</button></td>

@@ -1,12 +1,9 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import useAuth from '../hooks/AuthProvider';
-
-import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import './Header.css';
+import './Dashboard.css';
 const Header = () => {
-    const { user, logout } = useAuth();
+    const { user, logout, admin } = useAuth();
     const history = useHistory();
     return (
         <div className="header">
@@ -18,26 +15,40 @@ const Header = () => {
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
 
                     <ul className="navbar-nav mx-auto mt-2 mt-lg-0">
-                        <li className="nav-item">
-                            <Link to="/home"> <FontAwesomeIcon icon={faHome} />  Home</Link>
-                        </li>
 
-                        {user?.email &&
+                        {user?.email && !admin && <React.Fragment>
                             <li className="nav-item">
-                                <Link to="/dashboard"> Dashboard</Link>
-                            </li>
-                        }
-
-                        {!user?.email && <React.Fragment>
-                            <li className="nav-item">
-                                <Link to="/login">Login</Link>
+                                <Link to="/pay">Pay</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/register">Registration</Link>
+                                <Link to="/myOrders">My Order</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="/addReview">Add Review</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="/profile">Profile</Link>
                             </li>
                         </React.Fragment>
                         }
 
+
+                        {admin && <React.Fragment>
+                            <li className="nav-item">
+                                <Link to="/manageOrder">Manage Order</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="/createAdmin">Create Admin</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="/addProduct">Add Product</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="/manageProduct">Manage Product</Link>
+                            </li>
+                        </React.Fragment>
+
+                        }
                         {user?.email &&
                             <li className="nav-item">
                                 <span className="text-primary">{user.displayName}</span>

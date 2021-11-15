@@ -3,13 +3,14 @@ import React from 'react';
 import { Button, Card, Col, Row } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-
+import Header from '../Header/Header';
 const ProductDetails = (props) => {
     const { product_id } = useParams();
     console.log(props.all_product);
     return (
 
         <div>
+            <Header></Header>
             <h3 className="bg-secondary py-3 my-3">Service Details</h3>
             {
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Spinner } from 'react-bootstrap';
 import Products from '../Products/Products';
+import Header from '../Header/Header';
 import Slider from './Slider/Slider';
 import HappyCustomer from './HappyCustomer/HappyCustomer';
 import Subscribe from './Subscribe/Subscribe';
@@ -15,6 +16,8 @@ const Home = (props) => {
 
     return (
         <div>
+
+            <Header></Header>
             <Slider></Slider>
             <Row className="px-5 py-3 ">
                 <h3 className="bg-secondary py-3">Our Products</h3>

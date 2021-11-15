@@ -1,7 +1,8 @@
-import userEvent from '@testing-library/user-event';
+
 import React from 'react';
 import { useState } from 'react';
 import useAuth from '../hooks/AuthProvider';
+import Dashboard from '../Dashboard/Dashboard';
 
 const AddReview = () => {
 
@@ -12,7 +13,7 @@ const AddReview = () => {
     const handleReview = e => {
         e.preventDefault();
         console.log(review, rating, error, user);
-        if (rating < 5 && rating < 1) {
+        if (rating > 5 || rating < 0) {
             setError('Rating value must be between 1 to 5');
             return;
         }
@@ -45,32 +46,36 @@ const AddReview = () => {
         e.preventDefault();
     }
     return (
-        <div className="mx-5">
-            <form onSubmit={handleReview}>
-                <h2>Please Add a Review</h2>
-                <div className="row mb-3">
-                    <label htmlFor="review" className="col-sm-2 col-form-label">Review</label>
-                    <div className="col-sm-10">
-                        <textarea onChange={handleReviewChange} type="text" className="form-control" id="review" value={review} required />
+        <React.Fragment>
+            <Dashboard></Dashboard>
+            <div className="mx-5">
+
+                <form onSubmit={handleReview}>
+                    <h2>Please Add a Review</h2>
+                    <div className="row mb-3">
+                        <label htmlFor="review" className="col-sm-2 col-form-label">Review</label>
+                        <div className="col-sm-10">
+                            <textarea onChange={handleReviewChange} type="text" className="form-control" id="review" value={review} required />
+                        </div>
                     </div>
-                </div>
 
-                <div className="row mb-3">
-                    <label htmlFor="rating" className="col-sm-2 col-form-label">Rating Value</label>
-                    <div className="col-sm-10">
-                        <input onChange={handleRatingChange} type="number" value={rating} className="form-control" id="rating" />
+                    <div className="row mb-3">
+                        <label htmlFor="rating" className="col-sm-2 col-form-label">Rating Value</label>
+                        <div className="col-sm-10">
+                            <input onChange={handleRatingChange} type="number" value={rating} className="form-control" id="rating" placeholder="0-5 value" />
+                        </div>
                     </div>
-                </div>
 
-                {error ?
-                    <div className="row mb-5  ml-5 text-danger">{error}</div> : ''
-                }
+                    {error ?
+                        <div className="row mb-5  ml-5 text-danger">{error}</div> : ''
+                    }
 
 
-                <button type="submit" className="btn btn-primary">Add Review</button>
+                    <button type="submit" className="btn btn-primary">Add Review</button>
 
-            </form>
-        </div >
+                </form>
+            </div >
+        </React.Fragment>
     );
 };
 

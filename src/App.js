@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
-import Header from './components/Header/Header';
 import AuthProvider from './components/context/AuthProvider';
 import PrivetRoute from './components/PrivetRoute/PrivetRoute';
 import Footer from './components/Footer/Footer';
@@ -22,12 +21,10 @@ import AdminRoute from './components/AdminRoute/AdminRoute';
 import ManageProducts from './components/ManageProducts/ManageProducts';
 import Pay from './components/Pay/Pay';
 import AddReview from './components/AddReview/AddReview';
-
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const serviceLink = `https://mysterious-gorge-96095.herokuapp.com/products`;
-
   useEffect(() => {
     fetch(serviceLink)
       .then(res => res.json())
@@ -40,7 +37,7 @@ function App() {
     <div className="App">
       <AuthProvider>
         <BrowserRouter>
-          <Header></Header>
+
           <Switch>
             <Route exact path="/">
               <Home all_product={products} isLoading={isLoading}></Home>
@@ -58,6 +55,9 @@ function App() {
               <AllProducts all_product={products}></AllProducts>
             </Route>
             <PrivetRoute path="/profile">
+              <Profile></Profile>
+            </PrivetRoute>
+            <PrivetRoute path="/dashboard">
               <Profile></Profile>
             </PrivetRoute>
             <PrivetRoute path="/pay">

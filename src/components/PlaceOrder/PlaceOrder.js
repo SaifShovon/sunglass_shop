@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
 import useAuth from '../hooks/AuthProvider';
+import Header from '../Header/Header';
 import './PlaceOrder.css';
 const PlaceOrder = (props) => {
     const { user } = useAuth();
@@ -37,6 +38,7 @@ const PlaceOrder = (props) => {
 
     return (
         <div className="add-order">
+            <Header></Header>
             <h2>Add an Order- {product[0]?.name}</h2>
             <h5><b> Your Name:</b> {user.displayName}</h5>
             <h5><b> Your Email:</b> {user.email}</h5>

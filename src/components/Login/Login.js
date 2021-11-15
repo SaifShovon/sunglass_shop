@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../hooks/AuthProvider';
 import { useState } from 'react';
+import Header from '../Header/Header';
 const Login = () => {
     const { user } = useAuth();
     const { signInUsigEmailAndPass, error } = useAuth();
@@ -36,6 +37,7 @@ const Login = () => {
 
     return (
         <div>
+            <Header></Header>
             {!user?.email &&
                 <div className="bg-secondary py-3">
                     <Link to="/register">

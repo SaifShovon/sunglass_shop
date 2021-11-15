@@ -29,7 +29,7 @@ const ReviewRating = () => {
 
                 {
                     reviews?.map(reviewRating =>
-                        <Grid item xs={6} md={4} sx={{ my: 2 }}>
+                        <Grid item xs={6} md={4} sx={{ my: 2 }} key={reviewRating.id}>
                             <Typography variant="h6" component="h6">{reviewRating.name}</Typography>
                             <Typography component="legend">{reviewRating.review}</Typography>
                             <Rating name="read-only" value={reviewRating.rating} readOnly />
